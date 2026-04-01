@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HC 記帳系統 - 記帳</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase JS SDK v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 主程式（共用） -->
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="container" id="ledger-page">
+
+    <h1>HC 記帳系統 - 記帳</h1>
+
+    <!-- JS / Supabase 狀態 -->
+    <div id="js-status">JS 初始化中...</div>
+
+    <!-- 顯示目前登入狀態 -->
+    <div id="user-info" class="user-info">
+      檢查登入狀態中...
+    </div>
+
+    <div class="row" style="margin-top: 8px;">
+      <div class="btn-group">
+        <button type="button" onclick="goToIndex()">回登入頁</button>
+        <button type="button" onclick="handleLogout()">登出</button>
+      </div>
+    </div>
+
+    <!-- 記帳輸入區（登入後才顯示） -->
+    <div id="ledger-input" class="hidden">
+      <h2>新增記帳</h2>
+      <div class="row">
+        <div>
+          <label>日期</label><br />
+          <input id="entry-date" type="date" />
+        </div>
+        <div>
+          <label>類型</label><br />
+          <select id="entry-type">
+            <option value="expense">支出</option>
+            <option value="income">收入</option>
+          </select>
+        </div>
+        <div>
+          <label>分類</label><br />
+          <input id="entry-category" placeholder="例如：餐飲、薪水" />
+        </div>
+        <div>
+          <label>金額</label><br />
+          <input id="entry-amount" type="number" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="note-field">
+          <label>備註</label><br />
+          <input id="entry-note" placeholder="例如：晚餐便當" />
+        </div>
+        <div class="btn-group">
+          <button type="button" onclick="addEntry()">新增記帳</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 記帳列表 -->
+    <div id="ledger-list" class="hidden">
+      <h2>記帳紀錄</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>日期</th>
+            <th>類型</th>
+            <th>分類</th>
+            <th>金額</th>
+            <th>備註</th>
+            <th>使用者</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="ledger-tbody">
+          <tr><td colspan="7">載入中...</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Debug 區（查錯用） -->
+    <pre id="debug" class="debug"></pre>
+
+  </div>
+</body>
+</html>
