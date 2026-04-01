@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HC 記帳系統 - 登入</title>
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Supabase JS SDK v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- 主程式（共用） -->
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="container" id="index-page">
+
+    <h1>HC 記帳系統 - 登入</h1>
+
+    <!-- JS / Supabase 狀態 -->
+    <div id="js-status">JS 初始化中...</div>
+
+    <!-- 顯示目前登入狀態 -->
+    <div id="user-info" class="user-info">
+      尚未登入
+    </div>
+
+    <!-- 登入區 -->
+    <h2>登入</h2>
+    <div>
+      <p class="hint">
+        帳號（示範用）：<code>admin</code>、<code>hc001</code>、<code>hc002</code><br />
+        密碼：<code>1qaz@WSX</code>（示範用，正式系統請換掉 😆）
+      </p>
+      <div class="row" id="login-form">
+        <div>
+          <label>帳號（不含 @demo.local）</label><br />
+          <input id="login-account" placeholder="例如 admin / hc001 / hc002" />
+        </div>
+        <div>
+          <label>密碼</label><br />
+          <input id="login-password" type="password" placeholder="1qaz@WSX" />
+        </div>
+        <div class="btn-group">
+          <button type="button" onclick="handleLogin()">登入</button>
+        </div>
+      </div>
+      <div id="auth-status" class="auth-status"></div>
+    </div>
+
+    <!-- Debug 區（查錯用） -->
+    <pre id="debug" class="debug"></pre>
+
+  </div>
+</body>
+</html>
